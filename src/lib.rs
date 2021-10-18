@@ -7,6 +7,10 @@ extern crate rand_xoshiro;
 use rand_xoshiro::rand_core::SeedableRng;
 use rand_xoshiro::Xoroshiro128StarStar;
 
+//
+mod fractals;
+use crate::fractals::*;
+
 static mut IMAGE: Vec<u8> = Vec::new();
 static mut WIDTH: u32 = 0;
 static mut HEIGHT: u32 = 0;
@@ -27,10 +31,12 @@ pub fn allocate(w: usize, h: usize) -> *const u8 {
 pub fn render_fractal(u: u64) {
   let mut rng = Xoroshiro128StarStar::seed_from_u64(u);
 
+  let g = mandlebrot();
+
   unsafe {
     for i in (0..IMAGE.len()).step_by(4) {
       let f: u8 = rng.gen();
-      IMAGE[i + 0] = f;
+      IMAGE[i + 0] = g as u8;
       IMAGE[i + 1] = f;
       IMAGE[i + 2] = f;
       IMAGE[i + 3] = 255;

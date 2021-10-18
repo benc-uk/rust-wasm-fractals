@@ -19,7 +19,6 @@ const runWasm = async () => {
   const rustMemory = new Uint8Array(rust.memory.buffer);
 
   setInterval(() => {
-    //const start = performance.now();
     render_fractal(BigInt(Date.now()));
     // Copy the updated buffer from Rust memory to the canvas image data
     canvasImageData.data.set(
@@ -28,8 +27,6 @@ const runWasm = async () => {
 
     // Finally, draw the image data on the canvas
     ctx.putImageData(canvasImageData, 0, 0);
-    //const end = performance.now();
-    //console.log(`Time taken: ${end - start} ms`);
   }, 60);
 };
 
