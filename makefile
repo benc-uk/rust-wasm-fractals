@@ -9,7 +9,7 @@ clean: ## 🧹 Clean
 	@rm -rf target
 
 build: ## 🔨 Build
-	wasm-pack build --target web
+	wasm-pack build --target web --release
 
 pre-reqs: ## 🌌 Pre-reqs
 	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/wasm-pack.sh | bash

@@ -4,25 +4,30 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub struct Fractal {
-  // pub w: f64,
-  // pub h: f64,
-  pub ratio: f64,
+  pub width: f64,
+  pub height: f64,
   pub zoom: f64,
   pub max_iters: f64,
   pub center_r: f64,
   pub center_i: f64,
+  pub inner_color_r: u8,
+  pub inner_color_g: u8,
+  pub inner_color_b: u8,
 }
 
 #[wasm_bindgen]
+#[allow(dead_code)]
 pub fn return_new_fractal() -> Fractal {
   Fractal {
-    // h: 3.0,
-    // w: 4.0,
-    ratio: 1.333,
+    width: 640.0,
+    height: 480.0,
     max_iters: 50.0,
-    zoom: 1.0,
-    center_r: -1.2,
-    center_i: 0.2,
+    zoom: 5.0,
+    center_r: -0.8,
+    center_i: 0.0,
+    inner_color_r: 0,
+    inner_color_g: 0,
+    inner_color_b: 0,
   }
 }
 
