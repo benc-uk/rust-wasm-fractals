@@ -15,6 +15,7 @@ build: ## 🔨 Build
 	cp pkg/rust_wasm_fractals.js dist/
 	cp pkg/rust_wasm_fractals_bg.wasm dist/
 	sed -i 's/..\/pkg\//.\//' dist/main.js
+	sed -i 's/..\/pkg\//.\//' dist/fractal.js
 
 pre-reqs: ## 🌌 Pre-reqs
 	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/wasm-pack.sh | bash
