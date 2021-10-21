@@ -1,0 +1,65 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
+  background-color: black;
+  color: #ddd;
+  height: 100%;
+  font-size: large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#settings {
+  background-color: rgba(70, 70, 70, 0.7);
+  border-radius: 0.5rem;
+  position: absolute;
+  display: block;
+  z-index: 1;
+  top: 2rem;
+  left: 2rem;
+  width: 18rem;
+  display: none;
+  padding: 0.5rem;
+  box-shadow: 0.2rem 0.5rem 0.8rem rgba(0, 0, 0, 0.5);
+  cursor: default;
+  backdrop-filter: blur(15px);
+}
+
+#loading {
+  margin: 10rem;
+  text-align: center;
+  font-size: 15rem;
+}
+
+h1,
+h2,
+h3 {
+  padding: 0rem;
+  margin: 0;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  cursor: crosshair;
+}
+
+button {
+  background-color: #333;
+  border-radius: 0.25rem;
+  border: 0.15rem solid #777;
+  padding: 0.4rem;
+  color: #ddd;
+  font-size: 1rem;
+}
+
+input,
+select {
+  margin: 0.4rem;
+  font-size: large;
+}

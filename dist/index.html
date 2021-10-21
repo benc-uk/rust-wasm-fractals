@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rust WASM Fractals</title>
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/285/cyclone_1f300.png" />
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div id="loading">...</div>
+    <script type="module" src="./main.js"></script>
+    <canvas id="canvas"></canvas>
+    </script>
+    <div id="settings">
+      <h3>⚙️ Rust Fractals</h3>
+      <hr />
+
+      <label for="setIter">Iterations</label>
+      <input type="number" id="setIter" min="20" step="20" style="width: 4rem;">
+
+      <label for="setFollowZoom">Linked</label>
+      <input type="checkbox" id="setFollowZoom"/><br/>
+
+      <label for="setZoom">Zoom Factor</label>
+      <input type="number" id="setZoom" step="0.1" min="0" style="width: 7rem;"><br/>
+
+      <label for="setSize">Size</label>
+      <select id="setSize">
+        <optgroup label="4:3">
+          <option value="320_240">320 x 240</option>
+          <option value="640_480">640 x 480</option>
+          <option value="800_600">800 x 600</option>
+          <option value="1024_768">1024 × 768</option>
+          <option value="1400_1050">1400 × 1050</option>
+          <option value="1600_1200">1600 × 1200</option>
+          <option value="2048_1536">2048 × 1536</option>
+        </optgroup>
+        <optgroup label="16:9">
+          <option value="854_480">854 x 480</option>
+          <option value="1024_576">1024 x 576</option>
+          <option value="1280_720">1280 x 720</option>
+          <option value="1920_1080">1920 x 1080</option>
+          <option value="2560_1440">2560 x 1440</option>
+        </optgroup>      
+        <optgroup label="21:9">
+          <option value="2560_1080">2560 x 1080</option>
+          <option value="3440_1440">3440 x 1440</option>
+        </optgroup>     
+      </select>
+      <br />
+      <label for="setPalette">Palette</label>
+      <select id="setPalette">
+        <option value="0">Sinebow</option>
+        <option value="1">Rainbow</option>
+        <option value="2">Magma</option>
+        <option value="3">Viridis</option>
+        <option value="4">Spectral</option>
+        <option value="5">Turbo</option>
+        <option value="6">Warm</option>
+        <option value="7">Cool</option>
+        <option value="8">Plasma</option>
+        <option value="9">Spectral</option>
+        <option value="10">CubeHelix</option>
+      </select>
+      <br />
+
+      <label for="setColorScale">Color Scale</label>
+      <input type="range" min="0.1" max="3.0" step="0.1" value="1.0" id="setColorScale"><br/>
+
+      <label for="setStretch">Stretch Image</label>
+      <input type="checkbox" id="setStretch"/>
+
+      <hr>
+      <button id="setReset">Reset</button>
+      <button id="setDownload">Save Image</button>
+    </div>
+   
+  </body>
+</html>
