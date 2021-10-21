@@ -10,6 +10,7 @@ clean: ## 🧹 Clean
 
 build: ## 🔨 Build
 	wasm-pack build --release --target web 
+	rm -rf dist
 	mkdir -p dist
 	cp -r web/* dist/
 	cp pkg/rust_wasm_fractals.js dist/

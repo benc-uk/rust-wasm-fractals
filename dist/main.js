@@ -1,7 +1,8 @@
 // You have to export init separate from exported functions
-import init, { allocate, render_fractal, new_fractal } from './rust_wasm_fractals.js'
+import init, { allocate, render_fractal } from './rust_wasm_fractals.js'
 import { updateSettings } from './settings.js'
 import { createFractal, saveFractalState } from './fractal.js'
+import { showToast } from './toast.js'
 
 let ctx
 let canvasImageData
