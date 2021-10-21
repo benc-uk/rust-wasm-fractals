@@ -23,11 +23,26 @@
 
       <label for="setSize">Size</label>
       <select id="setSize">
-        <option value="320_240">320 x 240</option>
-        <option value="640_480">640 x 480</option>
-        <option value="800_600">800 x 600</option>
-        <option value="1024_768">1024 × 768</option>
-        <option value="1280_720">1280 x 720</option>
+        <optgroup label="4:3">
+          <option value="320_240">320 x 240</option>
+          <option value="640_480">640 x 480</option>
+          <option value="800_600">800 x 600</option>
+          <option value="1024_768">1024 × 768</option>
+          <option value="1400_1050">1400 × 1050</option>
+          <option value="1600_1200">1600 × 1200</option>
+          <option value="2048_1536">2048 × 1536</option>
+        </optgroup>
+        <optgroup label="16:9">
+          <option value="854_480">854 x 480</option>
+          <option value="1024_576">1024 x 576</option>
+          <option value="1280_720">1280 x 720</option>
+          <option value="1920_1080">1920 x 1080</option>
+          <option value="2560_1440">2560 x 1440</option>
+        </optgroup>      
+        <optgroup label="21:9">
+          <option value="2560_1080">2560 x 1080</option>
+          <option value="3440_1440">3440 x 1440</option>
+        </optgroup>     
       </select>
       <br />
       <label for="setPalette">Palette</label>
