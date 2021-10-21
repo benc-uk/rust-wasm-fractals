@@ -1,5 +1,6 @@
 {
-  "printWidth": 120,
+  "printWidth": 150,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "htmlWhitespaceSensitivity": "css"
 }

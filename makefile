@@ -9,7 +9,12 @@ clean: ## 🧹 Clean
 	@rm -rf target
 
 build: ## 🔨 Build
-	wasm-pack build --target web --release
+	wasm-pack build --release --target web 
+	mkdir -p dist
+	cp -r web/* dist/
+	cp pkg/rust_wasm_fractals.js dist/
+	cp pkg/rust_wasm_fractals_bg.wasm dist/
+	sed -i 's/..\/pkg\//.\//' dist/main.js
 
 pre-reqs: ## 🌌 Pre-reqs
 	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/wasm-pack.sh | bash

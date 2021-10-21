@@ -1,5 +1,6 @@
 use wasm_bindgen::prelude::*;
 extern crate console_error_panic_hook;
+use colorgrad::Gradient;
 use num::complex::*;
 
 mod fractal;
@@ -9,27 +10,36 @@ mod console;
 static mut IMAGE: Vec<u8> = Vec::new();
 
 #[wasm_bindgen]
-pub fn allocate(w: usize, h: usize) -> *const u8 {
+pub fn allocate(width: usize, height: usize) -> *const u8 {
   console_error_panic_hook::set_once();
 
   unsafe {
-    IMAGE = vec![0; w * h * 4];
+    IMAGE = vec![0; width * height * 4];
     return IMAGE.as_ptr();
   }
 }
 
 #[wasm_bindgen]
 pub fn render_fractal(f: &Fractal) {
-  let fw = f.width; // / 1000.0;
-  let fh = f.height; // / 1000.0;
-  let r_offset = f.center_r - (fw / 2.0) * f.zoom;
-  let i_offset = f.center_i - (fh / 2.0) * f.zoom;
-  let grad = colorgrad::sinebow();
+  let r_offset = f.center_r - (f.width / 2.0) * f.zoom;
+  let i_offset = f.center_i - (f.height / 2.0) * f.zoom;
+
+  let grad: Gradient;
+  match f.palette {
+    0 => grad = colorgrad::sinebow(),
+    1 => grad = colorgrad::rainbow(),
+    2 => grad = colorgrad::magma(),
+    3 => grad = colorgrad::viridis(),
+    4 => grad = colorgrad::spectral(),
+    5 => grad = colorgrad::turbo(),
+    6 => grad = colorgrad::cubehelix_default(),
+    _ => grad = colorgrad::rainbow(),
+  }
 
   for y in 0..f.height as usize {
     for x in 0..f.width as usize {
-      let r = r_offset + (x as f64 / f.width) * fw * f.zoom;
-      let i = i_offset + (y as f64 / f.height) * fh * f.zoom;
+      let r = r_offset + (x as f64 / f.width) * f.width * f.zoom;
+      let i = i_offset + (y as f64 / f.height) * f.height * f.zoom;
       let c = Complex64::new(r, i);
 
       // Compute the number of iterations in the Mandelbrot set at the given point

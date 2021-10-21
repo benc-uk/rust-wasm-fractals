@@ -13,11 +13,12 @@ pub struct Fractal {
   pub inner_color_r: u8,
   pub inner_color_g: u8,
   pub inner_color_b: u8,
+  pub palette: u8,
 }
 
 #[wasm_bindgen]
 #[allow(dead_code)]
-pub fn return_new_fractal() -> Fractal {
+pub fn new_fractal() -> Fractal {
   Fractal {
     width: 640.0,
     height: 480.0,
@@ -28,6 +29,7 @@ pub fn return_new_fractal() -> Fractal {
     inner_color_r: 0,
     inner_color_g: 0,
     inner_color_b: 0,
+    palette: 0,
   }
 }
 
