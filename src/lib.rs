@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 extern crate console_error_panic_hook;
-use colorgrad::Gradient;
+use colorgrad::*;
 use num::complex::*;
 
 mod fractal;
@@ -32,7 +32,11 @@ pub fn render_fractal(f: &Fractal) {
     3 => grad = colorgrad::viridis(),
     4 => grad = colorgrad::spectral(),
     5 => grad = colorgrad::turbo(),
-    6 => grad = colorgrad::cubehelix_default(),
+    6 => grad = colorgrad::warm(),
+    7 => grad = colorgrad::cool(),
+    8 => grad = colorgrad::plasma(),
+    9 => grad = colorgrad::spectral(),
+    10 => grad = colorgrad::cubehelix_default(),
     _ => grad = colorgrad::rainbow(),
   }
 
@@ -50,8 +54,9 @@ pub fn render_fractal(f: &Fractal) {
       if iters >= f.max_iters.floor() {
         color = (f.inner_color_r, f.inner_color_g, f.inner_color_b, 255);
       } else {
-        // The sqrt is to make the colors more visible
-        let gradient_index = (iters / f.max_iters).sqrt();
+        let mut gradient_index = iters / f.max_iters;
+        // This lets us get more creative with the gradient
+        gradient_index = gradient_index.powf(f.color_scale);
         color = grad.at(gradient_index).to_linear_rgba_u8();
       }
 

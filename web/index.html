@@ -16,10 +16,13 @@
       <hr />
 
       <label for="setIter">Iterations</label>
-      <input type="number" id="setIter" min="20" style="width: 4rem;">
+      <input type="number" id="setIter" min="20" step="20" style="width: 4rem;">
 
-      <label for="setFollowZoom">Track Zoom</label>
+      <label for="setFollowZoom">Linked</label>
       <input type="checkbox" id="setFollowZoom"/><br/>
+
+      <label for="setZoom">Zoom Factor</label>
+      <input type="number" id="setZoom" step="0.1" min="0" style="width: 7rem;"><br/>
 
       <label for="setSize">Size</label>
       <select id="setSize">
@@ -53,15 +56,21 @@
         <option value="3">Viridis</option>
         <option value="4">Spectral</option>
         <option value="5">Turbo</option>
-        <option value="6">CubeHelix</option>
+        <option value="6">Warm</option>
+        <option value="7">Cool</option>
+        <option value="8">Plasma</option>
+        <option value="9">Spectral</option>
+        <option value="10">CubeHelix</option>
       </select>
       <br />
+
+      <label for="setColorScale">Color Scale</label>
+      <input type="range" min="0.1" max="3.0" step="0.1" value="1.0" id="setColorScale"><br/>
 
       <label for="setStretch">Stretch Image</label>
       <input type="checkbox" id="setStretch"/>
 
       <hr>
-      <br /><br />
       <button id="setReset">Reset</button>
       <button id="setDownload">Save Image</button>
     </div>

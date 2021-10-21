@@ -1,4 +1,5 @@
-import { fractal, drawFractal, saveFractalState } from './main.js'
+import { fractal, drawFractal } from './main.js'
+import { saveFractalState } from './fractal.js'
 
 let settingsOpen = false
 
@@ -9,6 +10,8 @@ const setDownload = document.getElementById('setDownload')
 const setSize = document.getElementById('setSize')
 const setIter = document.getElementById('setIter')
 const setFollowZoom = document.getElementById('setFollowZoom')
+const setZoom = document.getElementById('setZoom')
+const setColorScale = document.getElementById('setColorScale')
 
 setIter.addEventListener('change', (e) => {
   fractal.max_iters = e.target.value
@@ -18,23 +21,21 @@ setIter.addEventListener('change', (e) => {
 setPalette.addEventListener('change', (e) => {
   console.log(e.target.value)
   fractal.palette = e.target.value
-  //hideSettings()
   drawFractal()
 })
 
 setStretch.addEventListener('change', (e) => {
   fractal.full_width = e.target.checked
-  saveFractalState()
+  saveFractalState(fractal)
   document.getElementById('canvas').style.width = fractal.full_width ? '100%' : 'auto'
-  //hideSettings()
 })
 
 setReset.addEventListener('click', (e) => {
   fractal.center_r = -0.5
   fractal.center_i = 0
   fractal.zoom = 0.006
-  fractal.max_iters = 120.0
-  saveFractalState()
+  fractal.max_iters = 90.0
+  saveFractalState(fractal)
   window.location.reload()
 })
 
@@ -55,14 +56,28 @@ setSize.addEventListener('change', (e) => {
   const height = e.target.value.split('_')[1]
   fractal.width = width
   fractal.height = height
-  saveFractalState()
+  saveFractalState(fractal)
   window.location.reload()
 })
 
 setFollowZoom.addEventListener('change', (e) => {
   fractal.follow_zoom = e.target.checked
-  saveFractalState()
+  saveFractalState(fractal)
 })
+
+setZoom.addEventListener('change', (e) => {
+  fractal.zoom = e.target.value / 10000
+  saveFractalState(fractal)
+  drawFractal()
+})
+
+setColorScale.addEventListener('change', (e) => {
+  fractal.color_scale = e.target.value
+  saveFractalState(fractal)
+  drawFractal()
+})
+
+// End of handlers
 
 window.addEventListener('contextmenu', toggleSettings)
 
@@ -72,6 +87,8 @@ export function updateSettings() {
   setSize.value = `${fractal.width}_${fractal.height}`
   setIter.value = fractal.max_iters
   setFollowZoom.checked = fractal.follow_zoom
+  setZoom.value = fractal.zoom * 10000
+  setColorScale.value = fractal.color_scale
 }
 
 function toggleSettings(e) {

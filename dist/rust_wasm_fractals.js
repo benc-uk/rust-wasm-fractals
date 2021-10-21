@@ -281,6 +281,18 @@ export class Fractal {
     set palette(arg0) {
         wasm.__wbg_set_fractal_palette(this.ptr, arg0);
     }
+    /**
+    */
+    get color_scale() {
+        var ret = wasm.__wbg_get_fractal_color_scale(this.ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set color_scale(arg0) {
+        wasm.__wbg_set_fractal_color_scale(this.ptr, arg0);
+    }
 }
 
 async function load(module, imports) {

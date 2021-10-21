@@ -14,6 +14,7 @@ pub struct Fractal {
   pub inner_color_g: u8,
   pub inner_color_b: u8,
   pub palette: u8,
+  pub color_scale: f64,
 }
 
 #[wasm_bindgen]
@@ -30,6 +31,7 @@ pub fn new_fractal() -> Fractal {
     inner_color_g: 0,
     inner_color_b: 0,
     palette: 0,
+    color_scale: 1.0,
   }
 }
 
