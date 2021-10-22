@@ -74,12 +74,12 @@ function wheelHandler(e) {
   if (e.deltaY > 0) {
     fractal.zoom *= 1.1 * delta
     if (fractal.follow_zoom) {
-      fractal.max_iters = fractal.max_iters * 0.999 * delta
+      fractal.max_iters /= 1.001 * delta
     }
   } else {
-    fractal.zoom *= 0.9 * delta
+    fractal.zoom /= 1.1 * delta
     if (fractal.follow_zoom) {
-      fractal.max_iters = fractal.max_iters * 1.001 * delta
+      fractal.max_iters *= 1.001 * delta
     }
   }
   if (fractal.zoom < 0) fractal.zoom = 0

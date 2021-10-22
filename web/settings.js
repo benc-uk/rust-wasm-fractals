@@ -1,5 +1,5 @@
 import { fractal, drawFractal } from './main.js'
-import { saveFractalState } from './fractal.js'
+import { DEFAULT_I, DEFAULT_ITERATIONS, DEFAULT_R, DEFAULT_ZOOM, saveFractalState } from './fractal.js'
 
 let settingsOpen = false
 
@@ -31,10 +31,10 @@ setStretch.addEventListener('change', (e) => {
 })
 
 setReset.addEventListener('click', (e) => {
-  fractal.center_r = -0.5
-  fractal.center_i = 0
-  fractal.zoom = 0.006
-  fractal.max_iters = 90.0
+  fractal.center_r = DEFAULT_R
+  fractal.center_i = DEFAULT_I
+  fractal.zoom = DEFAULT_ZOOM
+  fractal.max_iters = DEFAULT_ITERATIONS
   saveFractalState(fractal)
   window.location.reload()
 })

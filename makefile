@@ -7,6 +7,7 @@ help: ## 💬 This help message :)
 clean: ## 🧹 Clean
 	@rm -rf pkg
 	@rm -rf target
+	@rm -rf dist
 
 build: ## 🔨 Build
 	wasm-pack build --release --target web 
