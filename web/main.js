@@ -41,11 +41,20 @@ export let fractal
   drawFractal()
 })()
 
-export function drawFractal() {
+let timerId = -1
+export function drawFractal(fast = true) {
   const start = performance.now()
 
+  if (fast) {
+    clearInterval(timerId)
+    timerId = setInterval(() => {
+      drawFractal(false)
+      clearInterval(timerId)
+    }, 800)
+  }
+
   // Now draw the fractal
-  render_fractal(fractal)
+  render_fractal(fractal, fast)
   // Copy the updated buffer from Rust memory to the canvas image data
   canvasImageData.data.set(rustMemory.slice(imagePtr, imagePtr + fractal.width * fractal.height * 4))
   // Finally, draw the image data on the canvas

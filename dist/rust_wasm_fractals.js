@@ -54,10 +54,11 @@ function _assertClass(instance, klass) {
 }
 /**
 * @param {Fractal} f
+* @param {boolean} fast
 */
-export function render_fractal(f) {
+export function render_fractal(f, fast) {
     _assertClass(f, Fractal);
-    wasm.render_fractal(f.ptr);
+    wasm.render_fractal(f.ptr, fast);
 }
 
 /**

@@ -47,6 +47,7 @@ canvas {
   right: 0;
   margin: auto;
   cursor: crosshair;
+  image-rendering: optimizeSpeed;
 }
 
 button {
