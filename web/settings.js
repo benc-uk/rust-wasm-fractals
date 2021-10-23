@@ -1,5 +1,6 @@
 import { fractal, drawFractal } from './main.js'
 import { DEFAULT_I, DEFAULT_ITERATIONS, DEFAULT_R, DEFAULT_ZOOM, saveFractalState } from './fractal.js'
+import { showToast } from './toast.js'
 
 let settingsOpen = false
 
@@ -13,6 +14,8 @@ const setFollowZoom = document.getElementById('setFollowZoom')
 const setZoom = document.getElementById('setZoom')
 const setColorScale = document.getElementById('setColorScale')
 const setInnerColor = document.getElementById('setInnerColor')
+const setHelp = document.getElementById('setHelp')
+const setType = document.getElementById('setType')
 const ZOOM_RESCALE = 1000000
 
 setIter.addEventListener('change', (e) => {
@@ -33,10 +36,7 @@ setStretch.addEventListener('change', (e) => {
 })
 
 setReset.addEventListener('click', (e) => {
-  fractal.center_r = DEFAULT_R
-  fractal.center_i = DEFAULT_I
-  fractal.zoom = DEFAULT_ZOOM
-  fractal.max_iters = DEFAULT_ITERATIONS
+  reset()
   saveFractalState(fractal)
   window.location.reload()
 })
@@ -92,7 +92,31 @@ setInnerColor.addEventListener('change', (e) => {
   drawFractal()
 })
 
+setHelp.addEventListener('click', (e) => {
+  hideSettings()
+  showToast(
+    `<h3>❓ Help</h3>
+    <hr>
+    - Left click anywhere to recenter the view on that point<br>
+    - Right click anywhere to open the settings panel<br>
+    - If you get "lost", open the settings and click reset<br>
+    - Use the mouse scroll wheel to zoom in and out<br>
+    - Use the cursor keys to modify the Julia set seed (i & r)<br><br>
+    Click to dismiss this popup`,
+    90000
+  )
+})
+
+setType.addEventListener('change', (e) => {
+  fractal.fractal_type = e.target.checked ? 0 : 1
+  reset()
+  saveFractalState(fractal)
+  drawFractal()
+})
+
+// ============================================================
 // End of handlers
+// ============================================================
 
 window.addEventListener('contextmenu', toggleSettings)
 
@@ -105,26 +129,33 @@ export function updateSettings() {
   setZoom.value = fractal.zoom * ZOOM_RESCALE
   setColorScale.value = fractal.color_scale
   setInnerColor.value = rgbToHex(fractal.inner_color_r, fractal.inner_color_g, fractal.inner_color_b)
+  setType.checked = fractal.fractal_type === 0
+}
+
+function reset() {
+  fractal.center_r = DEFAULT_R
+  fractal.center_i = DEFAULT_I
+  fractal.zoom = DEFAULT_ZOOM
+  fractal.max_iters = DEFAULT_ITERATIONS
 }
 
 function toggleSettings(e) {
   e.preventDefault()
   if (!settingsOpen) {
-    document.getElementById('settings').style.display = 'block'
+    document.getElementById('settings').classList.replace('hidden', 'shown')
     settingsOpen = true
   } else {
-    document.getElementById('settings').style.display = 'none'
+    document.getElementById('settings').classList.replace('shown', 'hidden')
     settingsOpen = false
   }
 }
 
 export function hideSettings() {
-  document.getElementById('settings').style.display = 'none'
+  document.getElementById('settings').classList.replace('shown', 'hidden')
   settingsOpen = false
 }
 
 function rgbToHex(r = 0, g = 0, b = 0) {
-  // clamp and convert to hex
   let hr = Math.max(0, Math.min(255, Math.round(r))).toString(16)
   let hg = Math.max(0, Math.min(255, Math.round(g))).toString(16)
   let hb = Math.max(0, Math.min(255, Math.round(b))).toString(16)

@@ -10,6 +10,7 @@ export function createFractal() {
   const fractal = new_fractal()
   if (localStorage.getItem('fractal')) {
     const storedFractal = JSON.parse(localStorage.getItem('fractal'))
+    fractal.fractal_type = storedFractal.fractal_type
     fractal.center_r = storedFractal.center_r
     fractal.center_i = storedFractal.center_i
     fractal.zoom = storedFractal.zoom
@@ -23,7 +24,10 @@ export function createFractal() {
     fractal.inner_color_r = storedFractal.inner_color_r
     fractal.inner_color_g = storedFractal.inner_color_g
     fractal.inner_color_b = storedFractal.inner_color_b
+    fractal.julia_seed_i = storedFractal.julia_seed_i
+    fractal.julia_seed_r = storedFractal.julia_seed_r
   } else {
+    fractal.fractal_type = 0
     fractal.center_r = DEFAULT_R
     fractal.center_i = DEFAULT_I
     fractal.zoom = DEFAULT_ZOOM
@@ -37,6 +41,8 @@ export function createFractal() {
     fractal.inner_color_r = 0.0
     fractal.inner_color_g = 0.0
     fractal.inner_color_b = 0.0
+    fractal.julia_seed_i = -1.03
+    fractal.julia_seed_r = 0.17
   }
 
   return fractal
@@ -60,6 +66,9 @@ export function saveFractalState(fractal) {
       inner_color_r: fractal.inner_color_r,
       inner_color_g: fractal.inner_color_g,
       inner_color_b: fractal.inner_color_b,
+      fractal_type: fractal.fractal_type,
+      julia_seed_i: fractal.julia_seed_i,
+      julia_seed_r: fractal.julia_seed_r,
     })
   )
 }

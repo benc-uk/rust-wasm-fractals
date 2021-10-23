@@ -20,4 +20,6 @@ build: ## 🔨 Build
 	sed -i 's/..\/pkg\//.\//' dist/fractal.js
 
 pre-reqs: ## 🌌 Pre-reqs
+	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/rust.sh | bash
 	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/wasm-pack.sh | bash
+

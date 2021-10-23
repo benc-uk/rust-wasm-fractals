@@ -15,6 +15,8 @@ export let fractal
 
   // Create a fractal
   fractal = createFractal()
+
+  // Shown only first time, i.e. if no saved fractal state
   if (!localStorage.getItem('fractal')) {
     showToast('Right click anywhere, to open settings & instructions', 4000)
   }
@@ -27,6 +29,7 @@ export let fractal
 
   canvas.addEventListener('wheel', wheelHandler)
   canvas.addEventListener('click', clickHandler)
+  window.addEventListener('keydown', keyHandler)
 
   ctx = canvas.getContext('2d')
   canvasImageData = ctx.createImageData(fractal.width, fractal.height)
@@ -63,6 +66,7 @@ export function drawFractal(fast = true) {
   const end = performance.now()
   console.log(`### Fractal rendered in ${Math.round(end - start)}ms`)
 
+  //if (!fast) showToast(`Fractal rendered in ${Math.round(end - start)}ms`, 500)
   saveFractalState(fractal)
 }
 
@@ -92,6 +96,24 @@ function wheelHandler(e) {
     }
   }
   if (fractal.zoom < 0) fractal.zoom = 0
+
+  updateSettings()
+  drawFractal()
+}
+
+function keyHandler(e) {
+  if (e.key === 'ArrowRight') {
+    fractal.julia_seed_r += 0.1 * fractal.zoom
+  }
+  if (e.key === 'ArrowLeft') {
+    fractal.julia_seed_r -= 0.1 * fractal.zoom
+  }
+  if (e.key === 'ArrowUp') {
+    fractal.julia_seed_i -= 0.1 * fractal.zoom
+  }
+  if (e.key === 'ArrowDown') {
+    fractal.julia_seed_i += 0.1 * fractal.zoom
+  }
 
   updateSettings()
   drawFractal()

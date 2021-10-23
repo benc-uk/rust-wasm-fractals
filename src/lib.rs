@@ -47,8 +47,8 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
     } else {
       1
     };
-    let s = format!("steps {}", step);
-    crate::console::log(&s[..]);
+
+    let julia_seed = Complex64::new(f.julia_seed_i, f.julia_seed_r);
     for y in (0..f.height as usize).step_by(step) {
       for x in (0..f.width as usize).step_by(step) {
         let r = r_offset + (x as f64 / f.width) * f.width * f.zoom;
@@ -56,7 +56,12 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
         let c = Complex64::new(r, i);
 
         // Compute the number of iterations in the Mandelbrot set at the given point
-        let iters = mandlebrot(c, f.max_iters as u32);
+        let mut iters = 0.0;
+        if f.fractal_type == 0 {
+          iters = mandlebrot(c, f.max_iters as u32);
+        } else {
+          iters = julia(c, julia_seed, f.max_iters as u32);
+        }
 
         // Now calculate the color based on the iteration count
         let color: (u8, u8, u8, u8);
@@ -86,11 +91,13 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
 
 fn set_pixel(x: usize, y: usize, width: f64, color: (u8, u8, u8, u8)) {
   let index = (y * (width as usize) + x) * 4 as usize;
+
   unsafe {
     if index >= IMAGE.len() {
       return;
     }
   }
+
   unsafe {
     IMAGE[index] = color.0;
     IMAGE[index + 1] = color.1;
