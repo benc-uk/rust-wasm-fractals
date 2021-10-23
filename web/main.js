@@ -102,6 +102,7 @@ function wheelHandler(e) {
 }
 
 function keyHandler(e) {
+  // 0.3 seems to be a good value
   if (e.key === 'ArrowRight') {
     fractal.julia_seed_r += 0.3 * fractal.zoom
   }

@@ -1,5 +1,5 @@
 import { fractal, drawFractal } from './main.js'
-import { DEFAULT_I, DEFAULT_ITERATIONS, DEFAULT_R, DEFAULT_ZOOM, saveFractalState } from './fractal.js'
+import { reset, saveFractalState } from './fractal.js'
 import { showToast } from './toast.js'
 
 let settingsOpen = false
@@ -130,13 +130,6 @@ export function updateSettings() {
   setColorScale.value = fractal.color_scale
   setInnerColor.value = rgbToHex(fractal.inner_color_r, fractal.inner_color_g, fractal.inner_color_b)
   setType.checked = fractal.fractal_type === 0
-}
-
-function reset() {
-  fractal.center_r = DEFAULT_R
-  fractal.center_i = DEFAULT_I
-  fractal.zoom = DEFAULT_ZOOM
-  fractal.max_iters = DEFAULT_ITERATIONS
 }
 
 function toggleSettings(e) {
