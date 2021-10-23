@@ -13,6 +13,7 @@ const setFollowZoom = document.getElementById('setFollowZoom')
 const setZoom = document.getElementById('setZoom')
 const setColorScale = document.getElementById('setColorScale')
 const setInnerColor = document.getElementById('setInnerColor')
+const ZOOM_RESCALE = 1000000
 
 setIter.addEventListener('change', (e) => {
   fractal.max_iters = e.target.value
@@ -67,7 +68,7 @@ setFollowZoom.addEventListener('change', (e) => {
 })
 
 setZoom.addEventListener('change', (e) => {
-  fractal.zoom = e.target.value / 10000
+  fractal.zoom = e.target.value / ZOOM_RESCALE
   saveFractalState(fractal)
   drawFractal()
 })
@@ -101,10 +102,9 @@ export function updateSettings() {
   setSize.value = `${fractal.width}_${fractal.height}`
   setIter.value = fractal.max_iters
   setFollowZoom.checked = fractal.follow_zoom
-  setZoom.value = fractal.zoom * 10000
+  setZoom.value = fractal.zoom * ZOOM_RESCALE
   setColorScale.value = fractal.color_scale
-  console.log(`#${fractal.inner_color_r.toString(16)}${fractal.inner_color_g.toString(16)}${fractal.inner_color_b.toString(16)}`)
-  setInnerColor.value = `#${fractal.inner_color_r.toString(16)}${fractal.inner_color_g.toString(16)}${fractal.inner_color_b.toString(16)}`
+  setInnerColor.value = rgbToHex(fractal.inner_color_r, fractal.inner_color_g, fractal.inner_color_b)
 }
 
 function toggleSettings(e) {
@@ -121,4 +121,12 @@ function toggleSettings(e) {
 export function hideSettings() {
   document.getElementById('settings').style.display = 'none'
   settingsOpen = false
+}
+
+function rgbToHex(r = 0, g = 0, b = 0) {
+  // clamp and convert to hex
+  let hr = Math.max(0, Math.min(255, Math.round(r))).toString(16)
+  let hg = Math.max(0, Math.min(255, Math.round(g))).toString(16)
+  let hb = Math.max(0, Math.min(255, Math.round(b))).toString(16)
+  return '#' + (hr.length < 2 ? '0' : '') + hr + (hg.length < 2 ? '0' : '') + hg + (hb.length < 2 ? '0' : '') + hb
 }

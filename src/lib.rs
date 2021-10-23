@@ -15,7 +15,7 @@ pub fn allocate(width: usize, height: usize) -> *const u8 {
   console_error_panic_hook::set_once();
 
   unsafe {
-    IMAGE = vec![255; width * height * 4];
+    IMAGE = vec![0; width * height * 4];
     return IMAGE.as_ptr();
   }
 }
@@ -47,6 +47,8 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
     } else {
       1
     };
+    let s = format!("steps {}", step);
+    crate::console::log(&s[..]);
     for y in (0..f.height as usize).step_by(step) {
       for x in (0..f.width as usize).step_by(step) {
         let r = r_offset + (x as f64 / f.width) * f.width * f.zoom;
@@ -83,7 +85,7 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
 }
 
 fn set_pixel(x: usize, y: usize, width: f64, color: (u8, u8, u8, u8)) {
-  let index = ((x + y * (width as usize)) * 4) as usize;
+  let index = (y * (width as usize) + x) * 4 as usize;
   unsafe {
     if index >= IMAGE.len() {
       return;
@@ -93,6 +95,6 @@ fn set_pixel(x: usize, y: usize, width: f64, color: (u8, u8, u8, u8)) {
     IMAGE[index] = color.0;
     IMAGE[index + 1] = color.1;
     IMAGE[index + 2] = color.2;
-    //IMAGE[index + 3] = 255;
+    IMAGE[index + 3] = 255;
   }
 }
