@@ -12,6 +12,7 @@ const setIter = document.getElementById('setIter')
 const setFollowZoom = document.getElementById('setFollowZoom')
 const setZoom = document.getElementById('setZoom')
 const setColorScale = document.getElementById('setColorScale')
+const setInnerColor = document.getElementById('setInnerColor')
 
 setIter.addEventListener('change', (e) => {
   fractal.max_iters = e.target.value
@@ -77,6 +78,19 @@ setColorScale.addEventListener('change', (e) => {
   drawFractal()
 })
 
+setInnerColor.addEventListener('change', (e) => {
+  const hexCode = e.target.value.split('')
+  const red = parseInt(hexCode[1] + hexCode[2], 16)
+  const green = parseInt(hexCode[3] + hexCode[4], 16)
+  const blue = parseInt(hexCode[5] + hexCode[6], 16)
+  fractal.inner_color_r = red
+  fractal.inner_color_g = green
+  fractal.inner_color_b = blue
+
+  saveFractalState(fractal)
+  drawFractal()
+})
+
 // End of handlers
 
 window.addEventListener('contextmenu', toggleSettings)
@@ -89,6 +103,8 @@ export function updateSettings() {
   setFollowZoom.checked = fractal.follow_zoom
   setZoom.value = fractal.zoom * 10000
   setColorScale.value = fractal.color_scale
+  console.log(`#${fractal.inner_color_r.toString(16)}${fractal.inner_color_g.toString(16)}${fractal.inner_color_b.toString(16)}`)
+  setInnerColor.value = `#${fractal.inner_color_r.toString(16)}${fractal.inner_color_g.toString(16)}${fractal.inner_color_b.toString(16)}`
 }
 
 function toggleSettings(e) {

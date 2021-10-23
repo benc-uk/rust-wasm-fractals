@@ -64,3 +64,13 @@ select {
   margin: 0.6rem;
   font-size: large;
 }
+
+footer {
+  font-size: 0.4rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+a {
+  color: #ddd;
+  text-decoration: none;
+}

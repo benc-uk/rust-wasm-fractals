@@ -12,7 +12,7 @@
     <canvas id="canvas"></canvas>
     </script>
     <div id="settings">
-      <h3>⚙️ Rust Fractals</h3>
+      <h3>⚙️ Rust + WASM Fractals</h3>
       <hr />
 
       <label for="setIter">Iterations</label>
@@ -64,8 +64,11 @@
       </select>
       <br />
 
-      <label for="setColorScale">Color Scale</label>
+      <label for="setColorScale">Colour Scale</label>
       <input type="range" min="0.1" max="2" step="0.05" value="1.0" id="setColorScale"><br/>
+
+      <label for="setInnerColor">Inner Colour</label>
+      <input type="color" id="setInnerColor" value="#000000"><br/>
 
       <label for="setStretch">Stretch Image</label>
       <input type="checkbox" id="setStretch"/>
@@ -73,6 +76,7 @@
       <br/> <br/>
       <button id="setReset">Reset</button>
       <button id="setDownload">Save Image</button>
+      <footer>v0.1.0 - Ben Coleman, 2021 <a target="_blank" href="https://github.com/benc-uk/rust-wasm-fractals">[GitHub]</a></footer>
     </div>
    
   </body>

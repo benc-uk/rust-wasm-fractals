@@ -20,6 +20,9 @@ export function createFractal() {
     fractal.palette = storedFractal.palette
     fractal.follow_zoom = storedFractal.follow_zoom
     fractal.color_scale = storedFractal.color_scale
+    fractal.inner_color_r = storedFractal.inner_color_r
+    fractal.inner_color_g = storedFractal.inner_color_g
+    fractal.inner_color_b = storedFractal.inner_color_b
   } else {
     fractal.center_r = DEFAULT_R
     fractal.center_i = DEFAULT_I
@@ -28,9 +31,12 @@ export function createFractal() {
     fractal.width = 800
     fractal.height = 600
     fractal.full_width = true
-    fractal.palette = 0
+    fractal.palette = 2
     fractal.follow_zoom = false
-    fractal.color_scale = 1.0
+    fractal.color_scale = 0.5
+    fractal.inner_color_r = 0.0
+    fractal.inner_color_g = 0.0
+    fractal.inner_color_b = 0.0
   }
 
   return fractal
@@ -51,6 +57,9 @@ export function saveFractalState(fractal) {
       palette: fractal.palette,
       follow_zoom: fractal.follow_zoom,
       color_scale: fractal.color_scale,
+      inner_color_r: fractal.inner_color_r,
+      inner_color_g: fractal.inner_color_g,
+      inner_color_b: fractal.inner_color_b,
     })
   )
 }
