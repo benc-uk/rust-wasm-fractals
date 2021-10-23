@@ -1,9 +1,12 @@
 import { new_fractal } from '../pkg/rust_wasm_fractals.js'
+import { fractal } from './main.js'
 
 export const DEFAULT_ZOOM = 0.006
 export const DEFAULT_ITERATIONS = 100
 export const DEFAULT_R = -0.5
 export const DEFAULT_I = 0.0
+export const DEFAULT_JULIA_I = -1.03
+export const DEFAULT_JULIA_R = 0.25
 
 // A wrapper around the WASM new_fractal function
 export function createFractal() {
@@ -41,8 +44,8 @@ export function createFractal() {
     fractal.inner_color_r = 0.0
     fractal.inner_color_g = 0.0
     fractal.inner_color_b = 0.0
-    fractal.julia_seed_i = -1.03
-    fractal.julia_seed_r = 0.17
+    fractal.julia_seed_i = DEFAULT_JULIA_I
+    fractal.julia_seed_r = DEFAULT_JULIA_R
   }
 
   return fractal
@@ -71,4 +74,13 @@ export function saveFractalState(fractal) {
       julia_seed_r: fractal.julia_seed_r,
     })
   )
+}
+
+export function reset() {
+  fractal.center_r = DEFAULT_R
+  fractal.center_i = DEFAULT_I
+  fractal.zoom = DEFAULT_ZOOM
+  fractal.max_iters = DEFAULT_ITERATIONS
+  fractal.julia_seed_i = DEFAULT_JULIA_I
+  fractal.julia_seed_r = DEFAULT_JULIA_R
 }

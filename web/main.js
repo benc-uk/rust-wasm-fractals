@@ -103,16 +103,16 @@ function wheelHandler(e) {
 
 function keyHandler(e) {
   if (e.key === 'ArrowRight') {
-    fractal.julia_seed_r += 0.1 * fractal.zoom
+    fractal.julia_seed_r += 0.3 * fractal.zoom
   }
   if (e.key === 'ArrowLeft') {
-    fractal.julia_seed_r -= 0.1 * fractal.zoom
+    fractal.julia_seed_r -= 0.3 * fractal.zoom
   }
   if (e.key === 'ArrowUp') {
-    fractal.julia_seed_i -= 0.1 * fractal.zoom
+    fractal.julia_seed_i -= 0.3 * fractal.zoom
   }
   if (e.key === 'ArrowDown') {
-    fractal.julia_seed_i += 0.1 * fractal.zoom
+    fractal.julia_seed_i += 0.3 * fractal.zoom
   }
 
   updateSettings()
