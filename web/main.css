@@ -6,7 +6,7 @@ html {
   background-color: black;
   color: #ddd;
   height: 100%;
-  font-size: large;
+  font-size: 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -73,13 +73,15 @@ button {
   width: 5rem;
 }
 button:hover {
-  background-color: #444;
+  background-color: rgb(27, 27, 27);
+  cursor: pointer;
 }
 
 input,
 select {
   margin: 0.6rem;
-  font-size: large;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
 }
 
 input.larger {

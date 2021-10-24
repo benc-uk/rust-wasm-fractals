@@ -56,7 +56,7 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
         let c = Complex64::new(r, i);
 
         // Compute the number of iterations in the Mandelbrot set at the given point
-        let mut iters = 0.0;
+        let iters: f64;
         if f.fractal_type == 0 {
           iters = mandlebrot(c, f.max_iters as u32);
         } else {

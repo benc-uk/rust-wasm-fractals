@@ -4,11 +4,14 @@ import { updateSettings } from './settings.js'
 import { createFractal, saveFractalState } from './fractal.js'
 import { showToast } from './toast.js'
 
+// A bunch of global stuff, why? Because it's fine for this sort of app
 let ctx
 let canvasImageData
 let imagePtr
 let rustMemory
 export let fractal
+
+  // No top level await yet in JS, so this is a wrapper
 ;(async function runWasm() {
   // Instantiate the WASM module
   const rust = await init()
@@ -56,7 +59,7 @@ export function drawFractal(fast = true) {
     }, 800)
   }
 
-  // Now draw the fractal
+  // Invoke the Rust/WASM function draw the fractal into the memory buffer
   render_fractal(fractal, fast)
   // Copy the updated buffer from Rust memory to the canvas image data
   canvasImageData.data.set(rustMemory.slice(imagePtr, imagePtr + fractal.width * fractal.height * 4))
@@ -66,7 +69,6 @@ export function drawFractal(fast = true) {
   const end = performance.now()
   console.log(`### Fractal rendered in ${Math.round(end - start)}ms`)
 
-  //if (!fast) showToast(`Fractal rendered in ${Math.round(end - start)}ms`, 500)
   saveFractalState(fractal)
 }
 
@@ -102,7 +104,9 @@ function wheelHandler(e) {
 }
 
 function keyHandler(e) {
-  // 0.3 seems to be a good value
+  if (fractal.fractal_type === 0) {
+    return
+  }
   if (e.key === 'ArrowRight') {
     fractal.julia_seed_r += 0.3 * fractal.zoom
   }

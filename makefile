@@ -9,7 +9,10 @@ clean: ## 🧹 Clean
 	@rm -rf target
 	@rm -rf dist
 
-build: ## 🔨 Build
+build: ## 🔨 Local build
+	wasm-pack build --target web 
+
+deploy: ## 📦 Build for deployment to in 'dist' folder
 	wasm-pack build --release --target web 
 	rm -rf dist
 	mkdir -p dist
