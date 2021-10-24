@@ -101,7 +101,7 @@ setHelp.addEventListener('click', (e) => {
     - Right click anywhere to open the settings panel<br>
     - If you get "lost", open the settings and click reset<br>
     - Use the mouse scroll wheel to zoom in and out<br>
-    - Use the cursor keys to modify the Julia set seed (i & r)<br><br>
+    - Use the cursor keys to modify & explore the Julia set seed<br><br>
     Click to dismiss this popup`,
     90000
   )
@@ -110,6 +110,7 @@ setHelp.addEventListener('click', (e) => {
 setType.addEventListener('change', (e) => {
   fractal.fractal_type = e.target.checked ? 0 : 1
   reset()
+  updateSettings()
   saveFractalState(fractal)
   drawFractal()
 })
@@ -126,7 +127,7 @@ export function updateSettings() {
   setSize.value = `${fractal.width}_${fractal.height}`
   setIter.value = fractal.max_iters
   setFollowZoom.checked = fractal.follow_zoom
-  setZoom.value = fractal.zoom * ZOOM_RESCALE
+  setZoom.value = (fractal.zoom * ZOOM_RESCALE).toFixed(10)
   setColorScale.value = fractal.color_scale
   setInnerColor.value = rgbToHex(fractal.inner_color_r, fractal.inner_color_g, fractal.inner_color_b)
   setType.checked = fractal.fractal_type === 0

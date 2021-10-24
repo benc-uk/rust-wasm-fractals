@@ -1,16 +1,18 @@
 import { new_fractal } from '../pkg/rust_wasm_fractals.js'
 import { fractal } from './main.js'
 
-export const DEFAULT_ZOOM = 0.006
-export const DEFAULT_ITERATIONS = 100
-export const DEFAULT_R = -0.5
-export const DEFAULT_I = 0.0
-export const DEFAULT_JULIA_I = -1.03
-export const DEFAULT_JULIA_R = 0.25
+const DEFAULT_ZOOM = 0.006
+const DEFAULT_ITERATIONS = 100
+const DEFAULT_R = -0.5
+const DEFAULT_I = 0.0
+const DEFAULT_JULIA_I = -1.03
+const DEFAULT_JULIA_R = 0.25
 
 // A wrapper around the WASM new_fractal function
 export function createFractal() {
+  // Get a pointer to a new fractal
   const fractal = new_fractal()
+
   if (localStorage.getItem('fractal')) {
     const storedFractal = JSON.parse(localStorage.getItem('fractal'))
     fractal.fractal_type = storedFractal.fractal_type
