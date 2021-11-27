@@ -1,3 +1,4 @@
+/* web/main.css */
 body,
 html {
   padding: 0;
@@ -7,9 +8,13 @@ html {
   color: #ddd;
   height: 100%;
   font-size: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
 }
-
 .dialog {
   background-color: rgba(70, 70, 70, 0.7);
   border-radius: 0.5rem;
@@ -23,35 +28,29 @@ html {
   cursor: default;
   backdrop-filter: blur(15px);
 }
-
 .label {
   float: left;
   width: 5em;
   text-align: right;
   padding-top: 0.6rem;
 }
-
 .row {
   display: flex;
 }
-
 .button-row {
   justify-content: space-between;
 }
-
 #loading {
   margin: 10rem;
   text-align: center;
   font-size: 15rem;
 }
-
 h1,
 h2,
 h3 {
   padding: 0rem;
   margin: 0;
 }
-
 canvas {
   position: absolute;
   top: 0;
@@ -62,7 +61,6 @@ canvas {
   cursor: crosshair;
   image-rendering: optimizeSpeed;
 }
-
 button {
   background-color: #333;
   border-radius: 0.25rem;
@@ -76,44 +74,35 @@ button:hover {
   background-color: rgb(27, 27, 27);
   cursor: pointer;
 }
-
 input,
 select {
   margin: 0.6rem;
   font-size: 1.2rem;
   border-radius: 0.3rem;
 }
-
 input.larger {
   width: 1.3rem;
   height: 1.3rem;
 }
-
 footer {
   font-size: 0.4rem;
   padding-top: 1rem;
   text-align: center;
 }
-
 a {
   color: #ddd;
   text-decoration: none;
 }
-
 .shown {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.2s linear;
 }
-
 .hidden {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 0.2s, opacity 0.2s linear;
 }
-
-/* ==== Toggle button ================================= */
-
 .onoffswitch {
   position: relative;
   width: 127px;
@@ -149,18 +138,21 @@ a {
   line-height: 30px;
   font-size: 14px;
   color: white;
-  font-family: Trebuchet, Arial, sans-serif;
+  font-family:
+    Trebuchet,
+    Arial,
+    sans-serif;
   font-weight: bold;
   box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-  content: 'Mandelbrot';
+  content: "Mandelbrot";
   padding-left: 10px;
   background-color: #2486e2;
   color: #ffffff;
 }
 .onoffswitch-inner:after {
-  content: 'Julia';
+  content: "Julia";
   padding-right: 10px;
   background-color: #157a37;
   color: #ffffff;

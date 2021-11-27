@@ -25,6 +25,16 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
   let r_offset = f.center_r - (f.width / 2.0) * f.zoom;
   let i_offset = f.center_i - (f.height / 2.0) * f.zoom;
 
+  let gradient_string = f.custom_gradient();
+  let colours: Vec<&str> = gradient_string.split(',').collect();
+  let custom = match colorgrad::CustomGradient::new()
+    .html_colors(&colours[..])
+    .build()
+  {
+    Ok(c) => c,
+    Err(_e) => colorgrad::sinebow(),
+  };
+
   let grad: Gradient;
   match f.palette {
     0 => grad = colorgrad::sinebow(),
@@ -38,6 +48,7 @@ pub fn render_fractal(f: &Fractal, fast: bool) {
     8 => grad = colorgrad::plasma(),
     9 => grad = colorgrad::spectral(),
     10 => grad = colorgrad::cubehelix_default(),
+    11 => grad = custom,
     _ => grad = colorgrad::rainbow(),
   }
 
