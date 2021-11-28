@@ -20,9 +20,7 @@ The web layer is pure JavaScript & HTML, and requires no bundling, WebPack or tr
 
 <img src="https://user-images.githubusercontent.com/14982936/138573056-c48aa6d0-a3a9-4db4-8b1a-3402ede2536f.png" style="width: 440px; height: 300px; border-radius:10px; object-fit: cover">
 
-
 <img src="https://user-images.githubusercontent.com/14982936/138572971-a91edb9a-ab93-449e-b110-5f41cdc1ccf7.png" style="width: 440px; height: 300px; border-radius:10px; object-fit: cover">
-
 
 <img src="https://user-images.githubusercontent.com/14982936/138573064-2cd0c215-8120-4a7e-a706-55ae151c87ed.png" style="width: 440px; height: 300px; border-radius:10px; object-fit: cover">
 
@@ -36,9 +34,18 @@ See the [examples](./examples) folder for more
 - Rust & Cargo (see https://www.rust-lang.org/tools/install)
 - Make
 - Something that can act as a local HTTP server, e.g. https://www.npmjs.com/package/http-server or https://github.com/m3ng9i/ran
+- [Node](https://nodejs.org/en/) - Only if planning to run bundling & deployment
 
 ### Steps
 
 - Run `make build`
 - Start HTTP server in root of repo
 - Open `/web` path on local server address e.g. http://localhost:8080/web/
+
+## Deploying
+
+To deploy the app, [ESBuild](https://esbuild.github.io/) is used to combine the HTML and JS in the web folder with the WASM and JS in the pkg folder, and create an output bundle. 
+
+Simply run `make deploy`. 
+
+See build.mjs file for more details

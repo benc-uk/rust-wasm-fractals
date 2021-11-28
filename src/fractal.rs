@@ -18,6 +18,20 @@ pub struct Fractal {
   pub color_scale: f64,
   pub julia_seed_r: f64,
   pub julia_seed_i: f64,
+  custom_gradient: String,
+}
+
+#[wasm_bindgen]
+impl Fractal {
+  #[wasm_bindgen(getter)]
+  pub fn custom_gradient(&self) -> String {
+    self.custom_gradient.clone()
+  }
+
+  #[wasm_bindgen(setter)]
+  pub fn set_custom_gradient(&mut self, cg: String) {
+    self.custom_gradient = cg;
+  }
 }
 
 #[wasm_bindgen]
@@ -38,6 +52,7 @@ pub fn new_fractal() -> Fractal {
     color_scale: 1.0,
     julia_seed_r: 0.0,
     julia_seed_i: 0.0,
+    custom_gradient: "#000000,#ffffff".to_string(),
   }
 }
 

@@ -10,7 +10,7 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#settings {
+.dialog {
   background-color: rgba(70, 70, 70, 0.7);
   border-radius: 0.5rem;
   position: absolute;

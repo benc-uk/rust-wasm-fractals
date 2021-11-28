@@ -1,4 +1,4 @@
-.PHONY: help image push build run lint lint-fix
+.PHONY: help clean deploy build pre-reqs
 .DEFAULT_GOAL := help
 
 help: ## 💬 This help message :)
@@ -8,21 +8,17 @@ clean: ## 🧹 Clean
 	@rm -rf pkg
 	@rm -rf target
 	@rm -rf dist
+	@rm -rf node_modules
 
 build: ## 🔨 Local build
 	wasm-pack build --target web 
 
 deploy: ## 📦 Build for deployment to in 'dist' folder
 	wasm-pack build --release --target web 
-	rm -rf dist
-	mkdir -p dist
-	cp -r web/* dist/
-	cp pkg/rust_wasm_fractals.js dist/
-	cp pkg/rust_wasm_fractals_bg.wasm dist/
-	sed -i 's/..\/pkg\//.\//' dist/main.js
-	sed -i 's/..\/pkg\//.\//' dist/fractal.js
+	npm install esbuild --no-save --silent
+	npm install @chialab/esbuild-plugin-html --no-save --silent
+	node ./build.mjs
 
 pre-reqs: ## 🌌 Pre-reqs
 	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/rust.sh | bash
 	curl -s https://raw.githubusercontent.com/benc-uk/tools-install/master/wasm-pack.sh | bash
-
