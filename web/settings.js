@@ -1,7 +1,10 @@
-import { fractal, drawFractal } from './main.js'
+// ========================================================
+// Code for the settings dialog
+// ========================================================
+
+import { fractal, drawFractal, version } from './main.js'
 import { reset, saveFractalState } from './fractal.js'
 import { showToast } from './toast.js'
-//import './custom-grad.js'
 
 const settingsDiv = document.createElement('div')
 settingsDiv.id = 'settings'
@@ -105,7 +108,7 @@ settingsDiv.innerHTML = `
   <button id="setDownload">Save</button>
   <button id="setHelp">Help</button>
 </div>
-<footer>v0.2.1 - Ben Coleman, 2021 <a target="_blank" href="https://github.com/benc-uk/rust-wasm-fractals">[GitHub]</a></footer>
+<footer>v${version()} - Ben Coleman, 2021 <a target="_blank" href="https://github.com/benc-uk/rust-wasm-fractals">[GitHub]</a></footer>
 `
 
 let settingsOpen = false

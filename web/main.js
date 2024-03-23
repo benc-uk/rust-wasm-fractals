@@ -1,3 +1,7 @@
+// ========================================================
+// Top level app file for the client/browser side
+// ========================================================
+
 // You have to export init separate from exported functions
 import init, { allocate, render_fractal } from '../pkg/rust_wasm_fractals.js'
 import { updateSettings } from './settings.js'
@@ -122,4 +126,8 @@ function keyHandler(e) {
 
   updateSettings()
   drawFractal()
+}
+
+export function version() {
+  return '0.2.2'
 }

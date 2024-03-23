@@ -1,3 +1,7 @@
+// ========================================================
+// Helper for initializing & saving fractal settings
+// ========================================================
+
 import { new_fractal } from '../pkg/rust_wasm_fractals.js'
 import { fractal } from './main.js'
 
@@ -11,7 +15,7 @@ const DEFAULT_CUSTOM = '#000033,#111166,#44FF22,#AAFF77'
 
 // A wrapper around the WASM new_fractal function
 export function createFractal() {
-  // Get a pointer to a new fractal
+  // Get a pointer to a new fractal from Rust/WASM
   const fractal = new_fractal()
 
   if (localStorage.getItem('fractal')) {
@@ -34,6 +38,7 @@ export function createFractal() {
     fractal.julia_seed_r = storedFractal.julia_seed_r
     fractal.custom_gradient = storedFractal.custom_gradient
   } else {
+    // Default fractal settings
     fractal.fractal_type = 0
     fractal.center_r = DEFAULT_R
     fractal.center_i = DEFAULT_I

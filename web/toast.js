@@ -1,6 +1,7 @@
-//
+// =============================================================
 // toast.js - A simple, pure JS toast/popup library for JS
-//
+// Ben Coleman, 2021
+// =============================================================
 
 const toastStyles = document.createElement('style')
 toastStyles.innerHTML = `
@@ -28,7 +29,7 @@ document.body.appendChild(toastStyles)
 // Show a toast message
 export function showToast(message, duration = 2000, pos = 'top-center') {
   const toast = document.createElement(`div`)
-  //toast.id = `toast_${Math.random()}`
+
   toast.classList.add(`toast`)
   toast.classList.add(`toastHidden`)
   toast.innerHTML = message
